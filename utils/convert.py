@@ -60,6 +60,7 @@ def convert_hash(csvfilepath):
             data["series_number"] = rows['Series Number']
             data["description"] = rows['Description']
             data["name"] = rows['Filename']
+            data["attributes"][0]['value'] = rows['Gender']
 
             
 
@@ -74,6 +75,7 @@ def convert_hash(csvfilepath):
                 jsonf.write(json.dumps(data, indent=4))
             #hashes json after file has been created 
             hashes.append(hashlib.sha256(open(jsonFilePath, 'rb').read()).hexdigest())
+            break
 
         print('Json files generated succesfully @./json Directory')    
         
