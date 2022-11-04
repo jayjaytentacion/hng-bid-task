@@ -5,8 +5,14 @@ import hashlib
 
        
 
-def convert_csv(csvfilepath,):
-   
+def convert_hash(csvfilepath):
+    '''
+    This function takes in @csvfilepath as a parameter
+    and goes through each line and convert them to json and sore them
+    in files,hashes them and return the hashes as a list
+    '''
+
+    #sample chip007 format
     data = {
           "format": "CHIP-0007",
             "name": "",
@@ -34,11 +40,11 @@ def convert_csv(csvfilepath,):
         }
 
     
-    
+    #list to store hashes
     hashes = []
 
-     # Open a csv reader called DictReader
-    
+
+    #opens the csv file 
     with open(csvfilepath, encoding='utf-8') as csvf:
         csvReader = csv.DictReader(csvf)
     
@@ -48,10 +54,7 @@ def convert_csv(csvfilepath,):
         # and add it to data
         
         for rows in csvReader:
-
-          
-          
-           
+                     
             data['collection']['id'] = rows["UUID"]
             # data["minting_tool"] = rows['TEAM NAMES']
             data["series_number"] = rows['Series Number']
@@ -62,17 +65,19 @@ def convert_csv(csvfilepath,):
 
             
 
-            
+            #get name of nft to save as output name
             name = rows['Filename']
             jsonFilePath='json/'+ name + '.json'
-         
+
+            #creates a json file with name from the nft
             with open(jsonFilePath, 'w', encoding='utf-8') as jsonf:
                 jsonf.write(json.dumps(data, indent=4))
-       
+            #hashes json after file has been created 
             hashes.append(hashlib.sha256(open(jsonFilePath, 'rb').read()).hexdigest())
 
         print('Json files generated succesfully @./json Directory')    
         
+        #return dictionary of hashes
         return hashes
                
            

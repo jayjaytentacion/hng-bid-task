@@ -5,10 +5,12 @@ from csv import reader
 
 
 def append(hash,file):
+    '''
+    appends hashes to new row in csvfilepath
+    '''
 
-
+    #get name of csvfile
     name = file.split('.')
-    # Second split using separator '/'
     outfile = name[0].split('/')
     outfile = name[0].split('\\')
     outfile= outfile[-1] + '.output'+ '.csv'
@@ -20,20 +22,21 @@ def append(hash,file):
         csv_reader = reader(read_obj)
         # Create a csv.writer object from the output file object
         csv_writer = writer(write_obj)
+        
+        #get current line number 
         line_num = csv_reader.line_num
    
  
         # Read each row of the input csv file as list
         for row in csv_reader:
-            # Append the default text in the row / list
+            # if line_num is zero append heading hash
             if (line_num == 0):
               
                 row.append('hash')
                 
             else:
-                
-
-             row.append(hash[line_num - 1])
+                # append corresponding hash to line in csv
+                row.append(hash[line_num - 1])
             # Add the updated row / list to the output file
             csv_writer.writerow(row)
             line_num+=1

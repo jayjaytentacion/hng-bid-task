@@ -1,4 +1,4 @@
-from utils.convert import convert_csv
+from utils.convert import convert_hash
 from utils.append import append
 import os
 import argparse
@@ -23,7 +23,7 @@ if (csvFilePath.endswith(".csv")):
 
 
 
-        hashlist = convert_csv(csvFilePath)
+        hashlist = convert_hash(csvFilePath)
 
         append(hashlist,csvFilePath)
 else:
