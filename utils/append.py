@@ -11,7 +11,7 @@ def append(hash,file):
     # Second split using separator '/'
     outfile = name[0].split('/')
     outfile = name[0].split('\\')
-    outfile='csv/'+ outfile[-1] + '.output'+ '.csv'
+    outfile= outfile[-1] + '.output'+ '.csv'
    
     # Open the input_file in read mode and output_file in write mode
     with open(file, 'r') as read_obj, \
@@ -37,5 +37,6 @@ def append(hash,file):
             # Add the updated row / list to the output file
             csv_writer.writerow(row)
             line_num+=1
+    print('Csv File generated succesfully @'+outfile)        
 
        

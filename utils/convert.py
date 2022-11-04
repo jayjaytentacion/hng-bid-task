@@ -1,7 +1,6 @@
 import csv
 import json
 import hashlib
-from typing import Final
 
 
        
@@ -12,7 +11,7 @@ def convert_csv(csvfilepath,):
           "format": "CHIP-0007",
             "name": "",
             "description": "",
-            "minting_tool": "",
+            "minting_tool": "TEAM GRIT",
             "sensitive_content": False,
             "series_number": "",
             "series_total": 420,
@@ -39,20 +38,27 @@ def convert_csv(csvfilepath,):
     hashes = []
 
      # Open a csv reader called DictReader
+    
     with open(csvfilepath, encoding='utf-8') as csvf:
         csvReader = csv.DictReader(csvf)
+    
+
          
         # Convert each row into a dictionary
         # and add it to data
         
         for rows in csvReader:
+
+          
           
            
             data['collection']['id'] = rows["UUID"]
-            data["minting_tool"] = rows['TEAM NAMES']
+            # data["minting_tool"] = rows['TEAM NAMES']
             data["series_number"] = rows['Series Number']
             data["description"] = rows['Description']
             data["name"] = rows['Filename']
+
+            
 
             
 
@@ -64,7 +70,8 @@ def convert_csv(csvfilepath,):
                 jsonf.write(json.dumps(data, indent=4))
        
             hashes.append(hashlib.sha256(open(jsonFilePath, 'rb').read()).hexdigest())
-            
+
+        print('Json files generated succesfully @./json Directory')    
         
         return hashes
                
