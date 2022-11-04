@@ -1,14 +1,16 @@
 from utils.convert import convert_csv
-from utils.hash import hash
 from utils.append import append
 
-csvFilePath = "csv\\test.csv"
+csvFilePath = "csv\\omo.csv"
 
-jsonfile=convert_csv(csvFilePath)
+hashlist = convert_csv(csvFilePath)
 
-hashing=hash(jsonfile) 
+append(hashlist,csvFilePath)
 
-append(hashing,csvFilePath)  
+
+
+
+  
 
 
 

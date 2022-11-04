@@ -4,14 +4,14 @@ from csv import reader
 
 
 
-def append(hash, file):
-    num = 1
+def append(hash,file):
+
 
     name = file.split('.')
     # Second split using separator '/'
     outfile = name[0].split('/')
     outfile = name[0].split('\\')
-    outfile='csv/'+ 'updated' + outfile[-1] + '.csv'
+    outfile='csv/'+ outfile[-1] + '.output'+ '.csv'
    
     # Open the input_file in read mode and output_file in write mode
     with open(file, 'r') as read_obj, \
@@ -28,12 +28,12 @@ def append(hash, file):
             # Append the default text in the row / list
             if (line_num == 0):
               
-                pass
+                row.append('hash')
                 
             else:
-                    
+                
 
-             row.append(hash)
+             row.append(hash[line_num - 1])
             # Add the updated row / list to the output file
             csv_writer.writerow(row)
             line_num+=1
